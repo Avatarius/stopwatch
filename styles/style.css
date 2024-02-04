@@ -1,0 +1,80 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  background-image: url(../images/blue-abstract.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-block-size: 100vh;
+}
+
+.stopwatch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  border-radius: 25px;
+  padding: 50px;
+  box-shadow: 5px 5px 5px rgba(0 0 0 / 0.5), -2px -2px 5px rgba(0 0 0 / 0.5);
+  font-family: "Black Ops One", system-ui;
+  font-size: 40px;
+  background-position: center;
+  background-size: cover;
+  inline-size: 100%;
+}
+
+.stopwatch__background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0.75;
+  background-image: url(../images/stopwatch.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.stopwatch__title {
+  color: #fff;
+  font-weight: 400;
+  font-size: 60px;
+}
+
+.stopwatch__timer {
+  color: #fff;
+  font-size: 65px;
+  text-transform: uppercase;
+  margin-block-end: 5px;
+}
+
+.stopwatch__button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stopwatch__button {
+  border: none;
+  border: 1.5px solid #fff;
+  border-radius: 20px;
+  padding: 2px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 23px;
+  background-color: rgba(0 0 0 / 0.4);
+  cursor: pointer;
+  appearance: none;
+  inline-size: 150px;
+  block-size: 44px;
+}
+
+.stopwatch__button:hover,
+.stopwatch__button:active {
+  border-width: 3px;
+  background-color: rgba(0 0 0 / 0.6);
+  transition: border-width 0.15s, background-color 0.1s;
+}
