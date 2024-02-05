@@ -7,43 +7,56 @@ class Timer {
     this.hours = 0;
     this.minutes = 0;
     this.seconds = 0;
+    this.centisecond = 0;
     this.hours_span = document.querySelector('.stopwatch__timer-hours');
     this.minutes_span = document.querySelector('.stopwatch__timer-minutes');
     this.seconds_span = document.querySelector('.stopwatch__timer-seconds');
+    this.centisecond_span = document.querySelector('.stopwatch__timer-centisecond');
   }
 
   _setTime() {
-    if (this.seconds >= 60) {
-      this.seconds = 0;
-      this.minutes++;
-    } else {
+
+    this.centisecond++;
+    if (this.centisecond > 99) {
       this.seconds++;
+      this.centisecond = 0;
     }
 
-    if (this.minutes >= 60) {
-      this.minutes = 0;
-      this.hours++;
+    if (this.seconds > 59) {
+      this.minutes++;
+      this.seconds = 0;
     }
+
+    if (this.minutes > 59) {
+      this.hours++;
+      this.minutes = 0;
+    }
+  }
+
+  _pan(num) {
+    const result = (num >= 10) ? num : '0' + num;
+    return result;
   }
 
   render() {
     if (this.isRunning) this._setTime();
 
-    let hours = (this.hours >= 10) ? this.hours : '0' + this.hours;
-    let minutes = (this.minutes >= 10) ? this.minutes : '0' + this.minutes;
-    let seconds = (this.seconds >= 10) ? this.seconds : ('0' + this.seconds);
-
+    let hours = this._pan(this.hours);
+    let minutes = this._pan(this.minutes);
+    let seconds = this._pan(this.seconds);
+    let centisecond = this._pan(this.centisecond);
 
     this.hours_span.textContent = hours;
     this.minutes_span.textContent = minutes;
     this.seconds_span.textContent = seconds;
+    this.centisecond_span.textContent = centisecond;
   }
 
 
   startTimer() {
     if (!this.isRunning) {
       this.render();
-      this.timer = setInterval(() => this.render(), 1000);
+      this.timer = setInterval(() => this.render(), 10);
       this.isRunning = true;
     }
 
@@ -59,7 +72,7 @@ class Timer {
     this.hours = 0;
     this.minutes = 0;
     this.seconds = 0;
-    this.milliseconds = 0;
+    this.centisecond = 0;
     this.render();
     this.isRunning = false;
   }
